@@ -1,4 +1,4 @@
-sketch.js
+
 const GRAVITY = 0.2;
 const SHELLTYPES = [
   "simple",
