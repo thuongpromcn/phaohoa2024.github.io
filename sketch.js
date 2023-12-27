@@ -16,18 +16,29 @@ let MUTE = false;
 
 var shells = [];
 var sparks = [];
-let sounds = [];
+var sounds = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
   strokeWeight(1);
   colorMode(HSB);
-  for (let i = 0; i < 3; i++) {
-    sounds.push(loadSound("sounds/explosion" + i + ".mp3"));
-  }
+
+  // Sử dụng Promise để bắt lỗi khi tải âm thanh
+  Promise.all([
+    loadSound("sounds/explosion0.mp3").catch(errorHandler),
+    loadSound("sounds/explosion1.mp3").catch(errorHandler),
+    loadSound("sounds/explosion2.mp3").catch(errorHandler),
+  ]).then((loadedSounds) => {
+    // Gán âm thanh vào biến sounds
+    sounds = loadedSounds;
+  });
 }
 
+// Hàm xử lý lỗi
+function errorHandler(error) {
+  console.error("Error loading sound:", error);
+}
 /*
 From p5.js docs: Called directly after setup(), the draw() function continuously
 executes the lines of code contained inside its block until the program is
