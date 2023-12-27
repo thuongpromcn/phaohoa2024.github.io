@@ -16,7 +16,7 @@ let MUTE = false;
 
 var shells = [];
 var sparks = [];
-var sounds = [];
+let sounds = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
